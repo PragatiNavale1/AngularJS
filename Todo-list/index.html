@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-list</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="myController">
+    
+    <h1>Todo List</h1>
+    <label for="taskName">Enter Task Name:</label>
+    <input type="text" id="taskName" ng-model="taskName">
+    <button ng-click="addNewTask()">Add</button>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>
+                    <!-- Editable Task -->
+                    <span ng-if="!task.editing">{{ task.name }}</span>
+                    <input ng-if="task.editing" type="text" ng-model="task.name">
+                </td>
+                <td>
+                    <button ng-click="deleteTask($index)">Delete</button>
+                    <button ng-click="editTask(task)">{{ task.editing ? "Save" : "Edit" }}</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
