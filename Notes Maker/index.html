@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Maker - AngularJS</title>
+    <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .note-list {
+            margin-top: 20px;
+        }
+        .note-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body ng-app="notesApp" ng-controller="notesController">
+
+    <h2>Notes Maker</h2>
+
+    <!-- Form to Add Notes -->
+    <input type="text" ng-model="newNote" placeholder="Enter your note" />
+    <button ng-click="addNote()">Add Note</button>
+
+    <!-- Display Notes -->
+    <div class="note-list" ng-if="notes.length">
+        <div class="note-item" ng-repeat="note in notes">
+            <span>{{note}}</span>
+            <button ng-click="deleteNote($index)">Delete</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
